@@ -228,9 +228,18 @@ namespace PHPixie;
 		array_unshift($this->assets_dirs, $this->root_dir.'assets/');
 		foreach($this->config->get('routes') as $name => $rule) 
 			$this->router->add($this->route($name, $rule[0], $rule[1]));
+			
+		$this->after_bootstrap();
 		
 		return $this;
 	}
+	
+	/**
+	 * Perform some initialization after bootstrap finished
+	 *
+	 * @return void
+	 */
+	protected function after_bootstrap() {}
 	
 		
 }
