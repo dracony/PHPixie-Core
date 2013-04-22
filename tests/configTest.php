@@ -98,6 +98,7 @@ class configTest extends PHPUnit_Framework_TestCase
 		$this->object->set('test.trees.oak.second_fairy', 'Trixie');
 		$this->assertEquals($this->object->get('test.trees.oak.second_fairy'), 'Trixie');
 		$this->object->write('test');
+		$group = $this->object->get('test');
 		$this->assertArrayHasKey('trees', $group);
 		$this->assertArrayHasKey('oak', $group['trees']);
 		$this->assertArrayHasKey('second_fairy', $group['trees']['oak']);
