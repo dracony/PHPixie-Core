@@ -44,15 +44,8 @@ class Config
 
 		if (!isset($this->groups[$name]))
 		{
-
 			$file = $this->pixie->find_file('config', $name);
-			if (!$file)
-				$this->groups[$name] = array(
-					'file' => $this->pixie->root_dir.'assets/config/'.$name.'.php',
-					'options' => array()
-				);
-			else
-				$this->load_group($name, $file);
+			$this->load_group($name, $file);
 		}
 
 		return $this->groups[$name]['options'];
@@ -66,11 +59,16 @@ class Config
 	 */
 	public function load_group($name, $file)
 	{
-		$options = include($file);
 		
-		if (!is_array($options))
+		if(!empty($file)){
+			$options = include($file);
+			if (!is_array($options))
+				$options = array();
+		}else {
 			$options = array();
-			
+			$file = $this->pixie-> root_dir.'assets/config/'.$name.'.php';
+		}
+		
 		$this->groups[$name] = array(
 			'file' => $file,
 			'options' => $options
