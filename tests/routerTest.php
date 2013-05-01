@@ -112,6 +112,21 @@ class RoterTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals('test', $route['params']['alpha']);
 		$this->assertEquals(123, $route['params']['num']);
 	}
+	
+	public function testMatchMethod() {
+		$this->object->add(new \PHPixie\Route('get', '/url', array(
+			'controller' => 'home',
+			'action' => 'get'
+		), 'GeT'));
+		$this->object->add(new \PHPixie\Route('post', '/url', array(
+			'controller' => 'home',
+			'action' => 'get'
+		), array('PosT')));
+		$route = $this->object->match('/url', 'GEt');
+		$this->assertEquals('get', $route['route']->name);
+		$route = $this->object->match('/url', 'POST');
+		$this->assertEquals('post', $route['route']->name);
+	}
 
 
 }

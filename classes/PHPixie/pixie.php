@@ -122,9 +122,14 @@ namespace PHPixie;
 	/**
 	 * Constructs a route
 	 *
+	 * @param string $name Name of the route
+	 * @param mixed $rule Rule for this route
+	 * @param array $defaults Default parameters for the route
+	 * @param mixed $methods Methods to restrict this route to.
+	 *                       Either a single method or an array of them.
 	 * @return \PHPixie\Route
 	 */
-	public function route($name, $rule, $defaults) {
+	public function route($name, $rule, $defaults, $methods = null) {
 		return new \PHPixie\Route($name, $rule, $defaults);
 	}
 	
@@ -200,7 +205,7 @@ namespace PHPixie;
 		$uri = $_SERVER['REQUEST_URI'];
 		$uri = preg_replace("#^{$this->basepath}(?:index\.php/)?#i", '/', $uri);
 		$url_parts = parse_url($uri);
-		$route_data = $this->router->match($url_parts['path']);
+		$route_data = $this->router->match($url_parts['path'], $_SERVER['REQUEST_METHOD']);
 		return $this->request($route_data['route'], $_SERVER['REQUEST_METHOD'], $_POST, $_GET, $route_data['params'], $_SERVER);
 	}
 	
@@ -227,7 +232,7 @@ namespace PHPixie;
 		}
 		array_unshift($this->assets_dirs, $this->root_dir.'assets/');
 		foreach($this->config->get('routes') as $name => $rule) 
-			$this->router->add($this->route($name, $rule[0], $rule[1]));
+			$this->router->add($this->route($name, $rule[0], $rule[1], $this->arr($rule, 2, null)));
 			
 		$this->after_bootstrap();
 		

@@ -63,16 +63,20 @@ class Router {
 	 * Matches the URI against available routes to find the correct one.
 	 *
 	 * @param string   $uri Request URI
+	 * @param string   $method Request method
 	 * @return array Array containing route and matched parameters
 	 * @throws \Exception If no route matches the URI
 	 * @throws \Exception If route matched but no Controller was defined for it
 	 * @throws \Exception If route matched but no action was defined for it
 	 */
-	public function match($uri)
+	public function match($uri, $method = 'GET')
 	{
 		$matched = false;
-		foreach ($this->routes as $name => $route)
-		{
+		$method = strtoupper($method);
+		foreach ($this->routes as $name => $route) {
+			if ($route-> methods != null && !in_array($method, $route->methods))
+				continue;
+			
 			$rule = $route->rule;
 			if (is_callable($rule))
 			{

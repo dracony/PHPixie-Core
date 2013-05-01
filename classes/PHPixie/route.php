@@ -28,6 +28,12 @@ class Route
 	public $defaults;
 
 	/**
+	 * Methods to restrict this route to.
+	 * @var array
+	 */
+	public $methods;
+
+	/**
 	 * Associative array of route instances.
 	 * @var array
 	 */
@@ -36,15 +42,23 @@ class Route
 	/**
 	 * Constructs a route.
 	 *
-	 * @param string $name		Name of the route
-	 * @param mixed $rule		Rule for this route
-	 * @param array $defaults	Default parameters for the route
+	 * @param string $name Name of the route
+	 * @param mixed $rule Rule for this route
+	 * @param array $defaults Default parameters for the route
+	 * @param mixed $methods Methods to restrict this route to.
+	 *                       Either a single method or an array of them.
 	 */
-	public function __construct($name, $rule, $defaults)
+	public function __construct($name, $rule, $defaults, $methods = null)
 	{
 		$this->name = $name;
 		$this->rule = $rule;
 		$this->defaults = $defaults;
+		if($methods != null){
+			if (is_string($methods))
+				$methods = array($methods);
+			$methods = array_map('strtoupper', $methods);
+		}
+		$this->methods = $methods;
 	}
 
 	/**

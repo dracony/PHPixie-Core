@@ -20,7 +20,7 @@ class RoteTest extends PHPUnit_Framework_TestCase
 		$this->object = new \PHPixie\Route('url', '(/<controller>(/<action>(/<id>)))', array(
 			'controller' => 'home',
 			'action' => 'index'
-		));
+		),'test');
 	}
 
 	/**
@@ -37,6 +37,7 @@ class RoteTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals('/home/index/5', $this->object->url(array('id' => 5)));
 		$this->assertEquals('/home/index', $this->object->url());
+		$this->assertEquals('TEST', $this->object->methods[0]);
 	}
 
 }
