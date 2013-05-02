@@ -1,6 +1,6 @@
 <?php
 namespace PixieTest {
-	require_once(ROOT.'/vendor/phpixie/core/classes/PHPixie/pixie.php');
+	require_once(ROOT.'/vendor/phpixie/core/classes/PHPixie/Pixie.php');
 	class Pixie extends \PHPixie\Pixie { 
 		public $basepath = '/tester/';
 		protected $modules = array(

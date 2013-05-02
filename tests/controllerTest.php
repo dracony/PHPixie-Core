@@ -1,5 +1,5 @@
 <?php
-require_once(ROOT.'/vendor/phpixie/core/classes/PHPixie/controller.php');
+require_once(ROOT.'/vendor/phpixie/core/classes/PHPixie/Controller.php');
 class TestController extends \PHPixie\Controller {
 	public $counter = 0;
 	public function before() {
