@@ -84,7 +84,9 @@ namespace {
 		}
 		
 		public function testRoute() {
-			$this->assertEquals('PHPixie\Route', get_class($this->object->route('a','/',array())));
+			$route = $this->object->route('a','/',array().'POST');
+			$this->assertEquals('PHPixie\Route', get_class($route));
+			$this->assertEquals('POST', $route->methods[0];
 		}
 		public function testRequest() {
 			$this->assertEquals('PHPixie\Request', get_class($this->object->request(null)));
