@@ -84,7 +84,7 @@ namespace {
 		}
 		
 		public function testRoute() {
-			$route = $this->object->route('a','/',array().'POST');
+			$route = $this->object->route('a','/',array(),'POST');
 			$this->assertEquals('PHPixie\Route', get_class($route));
 			$this->assertEquals('POST', $route->methods[0]);
 		}
