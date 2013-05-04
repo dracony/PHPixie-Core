@@ -130,7 +130,7 @@ namespace PHPixie;
 	 * @return \PHPixie\Route
 	 */
 	public function route($name, $rule, $defaults, $methods = null) {
-		return new \PHPixie\Route($name, $rule, $defaults);
+		return new \PHPixie\Route($name, $rule, $defaults, $methods);
 	}
 	
 	/**
