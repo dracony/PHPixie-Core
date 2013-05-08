@@ -172,7 +172,7 @@ class Request
 	 */
 	public function execute()
 	{
-		$class = $this->param('namespace',$this->pixie->app_namespace).'Controller\\'.$this->param('controller');
+		$class = $this->param('namespace',$this->pixie->app_namespace).'Controller\\'.ucfirst($this->param('controller'));
 		$controller = $this->pixie->controller($class);
 		$controller->request = $this;
 		$controller->run($this->param('action'));
