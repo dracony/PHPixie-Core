@@ -45,7 +45,10 @@ class Debug
 	 */
 	public function render_error($exception)
 	{
-		ob_end_clean();
+		if (ob_get_length() > 0)
+		{
+			ob_end_clean();
+		}
 
 		if ($exception->getCode() == 404)
 		{
