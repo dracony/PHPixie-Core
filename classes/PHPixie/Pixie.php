@@ -13,7 +13,7 @@ namespace PHPixie;
  * @property-read \PHPixie\Config $config Configuration handler
  * @property-read \PHPixie\Debug $debug Error handler and logger
  * @property-read \PHPixie\Router $router Router
- * @property-read \PHPixie\Session $config Session handler
+ * @property-read \PHPixie\Session $session Session handler
  */
 
  class Pixie {
