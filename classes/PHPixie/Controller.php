@@ -66,7 +66,7 @@ class Controller
 	public function __construct($pixie)
 	{
 		$this->pixie = $pixie;
-		$this->response = new Response;
+		$this->response = $pixie->response();
 	}
 
 	/**

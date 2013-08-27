@@ -24,9 +24,10 @@ namespace PHPixie;
 	 */
 	protected $instance_classes = array(
 		'config'  => '\PHPixie\Config',
+		'cookie' => '\PHPixie\Cookie',
 		'debug'   => '\PHPixie\Debug',
 		'router'  => '\PHPixie\Router',
-		'session' => '\PHPixie\Session',
+		'session' => '\PHPixie\Session'
 	);
 	
  	/**
@@ -106,10 +107,11 @@ namespace PHPixie;
 	 * @param  array  $post   Array of POST data
 	 * @param  array  $get    Array of GET data
 	 * @param  array  $server Array of SERVER data
+	 * @param  array  $cookie Array of COOKIE data
 	 * @return \PHPixie\Request
 	 */
-	public function request($route, $method = "GET", $post = array(), $get = array(), $param=array(), $server = array()) {
-		return new \PHPixie\Request($this, $route, $method, $post, $get, $param, $server);
+	public function request($route, $method = "GET", $post = array(), $get = array(), $param=array(), $server = array(), $cookie = array()) {
+		return new \PHPixie\Request($this, $route, $method, $post, $get, $param, $server, $cookie);
 	}
 	
 	/**
@@ -118,7 +120,7 @@ namespace PHPixie;
 	 * @return \PHPixie\Response
 	 */
 	public function response() {
-		return new \PHPixie\Response;
+		return new \PHPixie\Response($this);
 	}
 	
 	/**
@@ -207,7 +209,7 @@ namespace PHPixie;
 		$uri = preg_replace("#^{$this->basepath}(?:index\.php/)?#i", '/', $uri);
 		$url_parts = parse_url($uri);
 		$route_data = $this->router->match($url_parts['path'], $_SERVER['REQUEST_METHOD']);
-		return $this->request($route_data['route'], $_SERVER['REQUEST_METHOD'], $_POST, $_GET, $route_data['params'], $_SERVER);
+		return $this->request($route_data['route'], $_SERVER['REQUEST_METHOD'], $_POST, $_GET, $route_data['params'], $_SERVER, $_COOKIE);
 	}
 	
 	/**

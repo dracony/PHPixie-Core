@@ -30,7 +30,8 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function setUp()
 	{
-		$this->object = new TestController(null);
+		$this->pixie = new \PHPixie\Pixie;
+		$this->object = new TestController($this->pixie);
 	}
 	
 	public function testRedirect() {

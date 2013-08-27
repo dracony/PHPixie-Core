@@ -3,7 +3,7 @@
 namespace PHPixie;
 
 /**
- * Simple class for accessing session data
+ * Session handler
  * @package Core
  */
 class Session
@@ -31,9 +31,7 @@ class Session
 	private function check()
 	{
 		if (!session_id())
-		{
 			session_start();
-		}
 	}
 
 	/**

@@ -34,6 +34,12 @@ class Request
 	protected $_param;
 	
 	/**
+	 * Stores COOKIE data
+	 * @var array
+	 */
+	protected $_cookie;
+	
+	/**
 	 * Current Route
 	 * @var Route
 	 */
@@ -57,7 +63,7 @@ class Request
 	 * @return Request Initialized request
 	 *
 	 */
-	public function __construct($pixie, $route, $method = "GET", $post = array(), $get = array(), $param=array(), $server = array())
+	public function __construct($pixie, $route, $method = "GET", $post = array(), $get = array(), $param=array(), $server = array(), $cookie = array())
 	{
 		$this->pixie = $pixie;
 		$this->route = $route;
@@ -66,6 +72,7 @@ class Request
 		$this->_get = $get;
 		$this->_param = $param;
 		$this->_server = $server;
+		$this->_cookie = $cookie;
 	}
 
 	/**
@@ -172,6 +179,7 @@ class Request
 	 */
 	public function execute()
 	{
+		$this->pixie->cookie->set_cookie_data($this->_cookie);
 		$class = $this->param('namespace',$this->pixie->app_namespace).'Controller\\'.ucfirst($this->param('controller'));
 		$controller = $this->pixie->controller($class);
 		$controller->request = $this;

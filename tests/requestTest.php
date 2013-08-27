@@ -36,7 +36,8 @@ namespace {
 				array('fairy_post' => 'Trixie', 'xss' => 'a<div></div>','xss_arr'=>array(array('a<div></div>'))), 
 				array('fairy_get' => 'Trixie', 'xss' => 'a<div></div>', 'xss_arr' => array(array('a<div></div>'))), 
 				array('controller' => 'TestController', 'action' => 'index', 'fairy_param' => 'Trixie'),
-				array('fairy_server' => 'Trixie','HTTP_HOST'=>'phpixie.com','REQUEST_URI'=>'/test/?test=test')
+				array('fairy_server' => 'Trixie', 'HTTP_HOST' => 'phpixie.com', 'REQUEST_URI' => '/test/?test=test'),
+				array('fairy_cookie' => 'Trixie')
 			);
 		}
 
@@ -114,6 +115,7 @@ namespace {
 		public function testExecute()
 		{
 			$this->object->execute();
+			$this->assertEquals('Trixie', $this->pixie->cookie->get('fairy_cookie'));
 		}
 
 		/**

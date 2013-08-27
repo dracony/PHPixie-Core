@@ -59,6 +59,7 @@ namespace {
 			$_POST['post'] = "test";
 			$_GET['get'] = "test";
 			$_SERVER['REQUEST_METHOD'] = "POST";
+			$_COOKIE['fairy'] = 'test';
 			$req = $this->object->http_request();
 			$this->assertEquals($req->get('get'), 'test');
 			$this->assertEquals($req->post('post'), 'test');
@@ -66,6 +67,11 @@ namespace {
 			$this->assertEquals($req->method, 'POST');
 			$this->assertEquals($req->param('controller'), 'home');
 			$this->assertEquals($req->param('action'), 'index');
+			$this->assertAttributeEquals(
+				array('fairy' => 'test'),
+				'_cookie',
+				$req
+			);
 		}
 		
 		public function testFind_file() {

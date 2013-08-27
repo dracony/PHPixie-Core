@@ -17,7 +17,8 @@ class ResponseTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function setUp()
 	{
-		$this->object = new \PHPixie\Response;
+		$this->pixie = new \PHPixie\Pixie;
+		$this->object = new \PHPixie\Response($this->pixie);
 	}
 
 	/**
@@ -62,5 +63,13 @@ class ResponseTest extends PHPUnit_Framework_TestCase
 		ob_end_clean();
 		$this->assertEquals($out, 'test');
 	}
-
+	
+	/**
+	 * @runInSeparateProcess
+	 */
+	public function testSend_headers() {
+		$this->pixie->cookie->set('fairy', 'test', 4, '/', 'phpixie.com', true, true);
+		$this->object->send_headers();
+		$data = headers_list();
+	}
 }
