@@ -107,5 +107,9 @@ namespace {
                  ->will($this->returnValue('test'));
 			$this->assertEquals('PHPixie\View', get_class($mock->view('test')));
 		}
+		
+		public function testView_Helper() {
+			$this->assertEquals('PHPixie\View\Helper', get_class($this->object->view_helper()));
+		}
 	}
 }

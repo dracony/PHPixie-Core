@@ -15,6 +15,12 @@ class View
 	protected $pixie;
 	
 	/**
+	 * View helper
+	 * @var \PHPixie\View\Helper
+	 */
+	protected $helper;
+	
+	/**
 	 * Full path to template file
 	 * @var string
 	 */
@@ -45,10 +51,12 @@ class View
 	 * @param string   $name The name of the template to use
 	 * @throws \Exception If specified template is not found
 	 */
-	public function __construct($pixie, $name)
+	public function __construct($pixie, $helper, $name)
 	{
 		$this->pixie = $pixie;
+		$this->helper = $helper;
 		$this->name = $name;
+		
 		$file = $this->pixie->find_file('views', $name, $this->_extension);
 			
 		if ($file == false)
@@ -86,6 +94,7 @@ class View
 	/**
 	 * Renders the template, all dynamically set properties
 	 * will be available inside the view file as variables.
+	 * Aliases form a View Helper will be added automatically.
 	 * Example:
 	 * <code>
 	 * $view = $this->pixie->view('frontpage');
@@ -94,9 +103,11 @@ class View
 	 * </code>
 	 *
 	 * @return string Rendered template
+	 * @see \PHPixie\View\Helper
 	 */
 	public function render()
 	{
+		extract($this->helper->get_aliases());
 		extract($this->_data);
 		ob_start();
 		include($this->path);

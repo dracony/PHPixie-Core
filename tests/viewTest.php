@@ -18,12 +18,12 @@ class ViewTest extends PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$this->file = $file = tempnam(sys_get_temp_dir(), 'view');
-		file_put_contents($file, '<?php echo $fairy; ?>');
+		file_put_contents($file, '<?php $_($fairy); ?>');
 		$pixie = $this->getMock("\\PHPixie\\Pixie", array('find_file'));
 		$pixie->expects($this->once())
                  ->method('find_file')
                  ->will($this->returnValue($this->file));
-		$this->object = new \PHPixie\View($pixie, 'view');
+		$this->object = new \PHPixie\View($pixie, $pixie->view_helper(), 'view');
 	}
 
 	/**

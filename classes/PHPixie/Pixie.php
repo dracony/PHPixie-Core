@@ -143,9 +143,17 @@ namespace PHPixie;
 	 * @param string   $name The name of the template to use
 	 * @return \PHPixie\View
 	 */
-	public function view($name)
-	{
-		return new \PHPixie\View($this, $name);
+	public function view($name) {
+		return new \PHPixie\View($this, $this->view_helper(), $name);
+	}
+	
+	/**
+	 * Constructs a view helper
+	 *
+	 * @return \PHPixie\View\Helper
+	 */
+	public function view_helper() {
+		return new \PHPixie\View\Helper();
 	}
 	
 	/**
