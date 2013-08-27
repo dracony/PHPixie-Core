@@ -48,6 +48,7 @@ class View
 	 * Constructs the view
 	 *
 	 * @param \PHPixie\Pixie $pixie Pixie dependency container
+	 * @param \PHPixie\View\Helper View Helper
 	 * @param string   $name The name of the template to use
 	 * @throws \Exception If specified template is not found
 	 */
