@@ -13,6 +13,20 @@ namespace PHPixie\View;
  */
 class Helper {
 
+	/**
+	 * Pixie Dependancy Container
+	 * @var \PHPixie\Pixie
+	*/
+	protected $pixie;
+	
+	/**
+	 * Constructs the view helper
+	 * @param \PHPixie\Pixie $pixie Pixie dependency container
+	 */
+	public function __construct($pixie) {
+		$this->pixie = $pixie;
+		
+	}
 	
 	/**
 	 * List of aliases to create for methods
