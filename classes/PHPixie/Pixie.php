@@ -153,7 +153,7 @@ namespace PHPixie;
 	 * @return \PHPixie\View\Helper
 	 */
 	public function view_helper() {
-		return new \PHPixie\View\Helper();
+		return new \PHPixie\View\Helper($this);
 	}
 	
 	/**
