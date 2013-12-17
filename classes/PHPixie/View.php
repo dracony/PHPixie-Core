@@ -108,6 +108,7 @@ class View
 	 */
 	public function render()
 	{
+		$helper = $this->helper;	
 		extract($this->helper->get_aliases());
 		extract($this->_data);
 		ob_start();
