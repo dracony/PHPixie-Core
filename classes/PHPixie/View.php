@@ -79,6 +79,17 @@ class View
 	}
 
 	/**
+	 * Manages checking whether a dynamic property has been defined or not
+	 *
+	 * @param string $key Property name
+	 * @return boolean
+	 */
+	public function __isset($key)
+	{
+		return isset($this->_data[$key]);
+	}
+
+	/**
 	 * Manages accessing passed data as properties
 	 *
 	 * @param string   $key Property name
