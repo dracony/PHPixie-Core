@@ -35,7 +35,18 @@ class ViewTest extends PHPUnit_Framework_TestCase
 		$this->object->fairy = 'Tinkerbell';
 		$this->assertEquals($this->object->fairy, 'Tinkerbell');
 	}
-
+	
+	public function test__isset()
+	{
+		
+		$this->assertEquals(false, isset($this->object->fairy));
+		$this->object->fairy = 'Tinkerbell';
+		$this->assertEquals(true, isset($this->object->fairy));
+		$this->object->test = null;
+		$this->assertEquals(true, isset($this->object->test));
+		
+	}
+	
 	/**
 	 * @covers View::render
 	 */
