@@ -86,7 +86,7 @@ class View
 	 */
 	public function __isset($key)
 	{
-		return isset($this->_data[$key]);
+		return array_key_exists($key, $this->_data);
 	}
 
 	/**
