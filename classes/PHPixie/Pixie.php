@@ -266,12 +266,12 @@ namespace PHPixie;
 			$class_name = get_class($this);
 			$this->app_namespace = substr($class_name, 0, strpos($class_name, "\\")+1);
 		}
+		$this->assets_dirs[] = $this->root_dir.'assets/';
 		$this->assets_dirs[] = dirname(dirname(dirname(__FILE__))).'/assets/';
 		$this->debug->init();
 		foreach($this->modules as $name=>$class) {
 			$this->$name = new $class($this);
 		}
-		array_unshift($this->assets_dirs, $this->root_dir.'assets/');
 		foreach($this->config->get('routes') as $name => $rule) 
 			$this->router->add($this->route($name, $rule[0], $rule[1], $this->arr($rule, 2, null)));
 			
