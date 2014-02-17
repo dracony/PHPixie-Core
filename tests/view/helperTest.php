@@ -7,7 +7,7 @@ class HelperTest extends PHPUnit_Framework_TestCase
 
 	protected function setUp()
 	{
-		$this->helper = new \PHPixie\View\Helper;
+		$this->helper = new \PHPixie\View\Helper(null);
 	}
 
 	public function testEscape() {
