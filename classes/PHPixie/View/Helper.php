@@ -1,18 +1,16 @@
 <?php
-
-namespace PHPixie\View;
-
 /**
  * View helper class.
- * An instance of this class is passed automatically
- * to every View.
- *
+ * An instance of this class is passed automatically to every View.
  * You can extend it to make your own methods available in view templates.
  *
  * @package Core
  */
-class Helper {
 
+namespace PHPixie\View;
+
+class Helper 
+{
 	/**
 	 * Pixie Dependancy Container
 	 * @var \PHPixie\Pixie
@@ -23,7 +21,8 @@ class Helper {
 	 * Constructs the view helper
 	 * @param \PHPixie\Pixie $pixie Pixie dependency container
 	 */
-	public function __construct($pixie) {
+	public function __construct(\PHPixie\Pixie $pixie)
+	{
 		$this->pixie = $pixie;
 		
 	}
@@ -41,7 +40,8 @@ class Helper {
 	 * 
 	 * @return array Associative array of aliases mapped to their methods
 	 */
-	public function get_aliases() {
+	public function get_aliases()
+	{
 		$aliases = array();
 		foreach($this->aliases as $alias => $method)
 			$aliases[$alias] = array($this, $method);
@@ -55,8 +55,9 @@ class Helper {
 	 * @param string $str String to escape
 	 * @return string Escaped string.
 	 */
-	public function escape($str) {
-		return htmlentities($str);
+	public function escape($str)
+	{
+		return htmlspecialchars($str, ENT_QUOTES | ENT_HTML5);
 	}
 	
 	/**
@@ -65,7 +66,8 @@ class Helper {
 	 * @param string $str String to escape
 	 * @see \PHPixie\View\Helper::escape
 	 */
-	public function output($str) {
+	public function output($str)
+	{
 		echo $this->escape($str);
 	}
 }
