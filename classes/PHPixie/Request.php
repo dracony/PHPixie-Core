@@ -125,6 +125,8 @@ class Request
 	 * @return mixed Filtered values
 	 */
 	public function filter_xss($val) {
+		if (is_null($val)) return NULL;
+		
 		if (is_array($val)) {
 			array_walk_recursive($val, function( &$str) {
 				$str = strip_tags($str);
