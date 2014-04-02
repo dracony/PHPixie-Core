@@ -56,6 +56,7 @@ namespace {
 		 */
 		public function testFilter_Xss()
 		{
+			$this->assertNull($this->object->filter_xss(null));
 			$this->assertEquals($this->object->filter_xss('a<div></div>'), 'a');
 			$this->assertEquals(current(current($this->object->filter_xss(array(array('a<div></div>'))))), 'a');
 		}
