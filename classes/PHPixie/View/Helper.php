@@ -49,6 +49,23 @@ class Helper {
 	}
 	
 	/**
+	 * Finds full path to a specified file in the /assets folders.
+	 * It will search in the application folder first, then in all enabled modules
+	 * and then the /assets folder of the framework.
+	 *
+	 * @param string  $subfolder  Subfolder to search in e.g. 'classes' or 'views'
+	 * @param string  $name       Name of the file without extension
+	 * @param string  $extension  File extension
+	 * @param boolean $return_all If 'true' returns all mathced files as array,
+	 *                            otherwise returns the first file found
+	 * @return mixed  Full path to the file or False if it is not found
+	 */
+	 public function find_file($subfolder, $name, $extension = 'php', $return_all = false)
+	 {
+	 	$this->pixie->find_file($subfolder, $name, $extension, $return_all);
+	 }
+	
+	/**
 	 * Escapes string to safely display HTML entities
 	 * like < > & without breaking layout and prevent XSS attacks.
 	 *
