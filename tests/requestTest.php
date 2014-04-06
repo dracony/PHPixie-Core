@@ -31,7 +31,7 @@ namespace {
 			$this->pixie->app_namespace = "";
 			$this->object = new \PHPixie\Request(
 				$this->pixie,
-				new \PHPixie\Route('test',array(),array()),
+				new \PHPixie\Route('/','test',array(),array()),
 				'GET', 
 				array('fairy_post' => 'Trixie', 'xss' => 'a<div></div>','xss_arr'=>array(array('a<div></div>'))), 
 				array('fairy_get' => 'Trixie', 'xss' => 'a<div></div>', 'xss_arr' => array(array('a<div></div>'))), 
@@ -141,7 +141,7 @@ namespace {
 		{
 			$req = new \PHPixie\Request(
 				$this->pixie,
-				new \PHPixie\Route('test',array(),array()),
+				new \PHPixie\Route('/', 'test',array(),array()),
 				'GET', 
 				array('fairy_post' => 'Trixie', 'xss' => 'a<div></div>','xss_arr'=>array(array('a<div></div>'))), 
 				array('fairy_get' => 'Trixie', 'xss' => 'a<div></div>', 'xss_arr' => array(array('a<div></div>'))), 

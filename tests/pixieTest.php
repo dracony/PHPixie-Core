@@ -54,7 +54,7 @@ namespace {
 		}
 		
 		public function testHttp_Request() {
-			$this->object->router->add(new \PHPixie\Route('default', '/<controller>/<action>', array()));
+			$this->object->router->add(new \PHPixie\Route('/', 'default', '/<controller>/<action>', array()));
 			$_SERVER['REQUEST_URI'] = "/tester/home/index";
 			$_POST['post'] = "test";
 			$_GET['get'] = "test";

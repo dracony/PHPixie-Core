@@ -1,0 +1,47 @@
+PHPUnit 4.0.3 by Sebastian Bergmann.
+
+Configuration read from C:\wamp\orm\vendor\phpixie\core\tests\phpunit.xml
+
+...................................E......EEEEE.......
+
+Time: 4.6 seconds, Memory: 5.75Mb
+
+There were 6 errors:
+
+1) ResponseTest::testSend_headers
+Cannot modify header information - headers already sent by (output started at C:\wamp\phpunit.phar:2)
+
+C:\wamp\orm\vendor\phpixie\core\classes\PHPixie\Response.php:68
+C:\wamp\orm\vendor\phpixie\core\tests\responseTest.php:72
+
+2) sessionTest::testGet
+session_start(): Cannot send session cookie - headers already sent by (output started at C:\wamp\phpunit.phar:2)
+
+C:\wamp\orm\vendor\phpixie\core\tests\sessionTest.php:39
+
+3) sessionTest::testSet
+session_start(): Cannot send session cookie - headers already sent by (output started at C:\wamp\phpunit.phar:2)
+
+C:\wamp\orm\vendor\phpixie\core\classes\PHPixie\Session.php:34
+C:\wamp\orm\vendor\phpixie\core\classes\PHPixie\Session.php:62
+C:\wamp\orm\vendor\phpixie\core\tests\sessionTest.php:51
+
+4) sessionTest::testRemove
+session_start(): Cannot send session cookie - headers already sent by (output started at C:\wamp\phpunit.phar:2)
+
+C:\wamp\orm\vendor\phpixie\core\tests\sessionTest.php:62
+
+5) sessionTest::testReset
+session_start(): Cannot send session cookie - headers already sent by (output started at C:\wamp\phpunit.phar:2)
+
+C:\wamp\orm\vendor\phpixie\core\tests\sessionTest.php:74
+
+6) sessionTest::testFlash
+session_start(): Cannot send session cookie - headers already sent by (output started at C:\wamp\phpunit.phar:2)
+
+C:\wamp\orm\vendor\phpixie\core\classes\PHPixie\Session.php:34
+C:\wamp\orm\vendor\phpixie\core\classes\PHPixie\Session.php:105
+C:\wamp\orm\vendor\phpixie\core\tests\sessionTest.php:85
+
+FAILURES!
+Tests: 54, Assertions: 149, Errors: 6.
