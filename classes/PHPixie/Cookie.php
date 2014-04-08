@@ -100,7 +100,7 @@ class Cookie {
 	 */
 	public function remove($key) {
 		unset($this->cookies[$key]);
-		$this->set($key, null, -24*3600*365 - time());
+		$this->set($key, null, -24*3600*30);
 	}
 	
 	/**
