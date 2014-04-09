@@ -76,16 +76,17 @@ class Request
 	}
 
 	/**
-	 * Retrieves a specifed parameter
+	 * Retrieves a value by key from a specified array with an optional XSS check.
 	 *
-	 * @param array $params Associative array with params
-	 * @param string $key    Parameter key
-	 * @param mixed $default Default value
-	 * @param bool  $filter_xss Whether to filter input for XSS protection
+	 * @param array  $params  Array to get the key from
+	 * @param string $key     Key to retrieve
+	 * @param mixed  $default Default value
+	 * @param bool   $filter_xss Whether to filter input for XSS protection
+	 *                           Defaults to true
 	 * @return mixed Returns a value if a key is specified,
 	 *               or an array of specifed parameters if it isn't.
 	 */
-	protected function getParam($params, $key = null, $default = null, $filter_xss=true)
+	protected function get_filtered_value($params, $key = null, $default = null, $filter_xss=true)
 	{
 		if ($key == null)
 			return $this->_get;
@@ -108,7 +109,7 @@ class Request
 	 */
 	public function get($key = null, $default = null, $filter_xss=true)
 	{
-		return $this->getParam($this->_get, $key, $default, $filter_xss);
+		return $this->get_filtered_value($this->_get, $key, $default, $filter_xss);
 	}
 
 	/**
@@ -122,7 +123,7 @@ class Request
 	 */
 	public function post($key = null, $default = null, $filter_xss=true)
 	{
-		return $this->getParam($this->_post, $key, $default, $filter_xss);
+		return $this->get_filtered_value($this->_post, $key, $default, $filter_xss);
 	}
 
 	/**
@@ -136,7 +137,7 @@ class Request
 	 */
 	public function param($key = null, $default = null, $filter_xss=true)
 	{
-		return $this->getParam($this->_param, $key, $default, $filter_xss);
+		return $this->get_filtered_value($this->_param, $key, $default, $filter_xss);
 	}
 
 	/**

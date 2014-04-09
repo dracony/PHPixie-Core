@@ -119,7 +119,7 @@ class Cookie {
 				if (!array_key_exists($param, $params))
 					$params[$param] = null;
 			
-			$params['expires'] = time() + $params['lifetime'];
+			$params['expires'] = $params['lifetime'] !== null ? time() + $params['lifetime'] : null;
 			unset($params['lifetime']);
 			
 			$updates[$key] = $params;
