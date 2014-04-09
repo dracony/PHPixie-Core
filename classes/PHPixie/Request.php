@@ -89,7 +89,7 @@ class Request
 	protected function get_filtered_value($params, $key = null, $default = null, $filter_xss=true)
 	{
 		if ($key == null)
-			return $this->_get;
+			return $params;
 		$val = $this->pixie->arr($params, $key, $default);
 		
 		if ($filter_xss)
