@@ -76,6 +76,28 @@ class Request
 	}
 
 	/**
+	 * Retrieves a specifed parameter
+	 *
+	 * @param array $params Associative array with params
+	 * @param string $key    Parameter key
+	 * @param mixed $default Default value
+	 * @param bool  $filter_xss Whether to filter input for XSS protection
+	 * @return mixed Returns a value if a key is specified,
+	 *               or an array of specifed parameters if it isn't.
+	 */
+	protected function getParam($params, $key = null, $default = null, $filter_xss=true)
+	{
+		if ($key == null)
+			return $this->_get;
+		$val = $this->pixie->arr($params, $key, $default);
+		
+		if ($filter_xss)
+			return $this->filter_xss($val);
+			
+		return $val;
+	}
+
+	/**
 	 * Retrieves a GET parameter
 	 *
 	 * @param string $key    Parameter key
@@ -86,14 +108,7 @@ class Request
 	 */
 	public function get($key = null, $default = null, $filter_xss=true)
 	{
-		if ($key == null)
-			return $this->_get;
-		$val = $this->pixie->arr($this->_get, $key, $default);
-		
-		if ($filter_xss)
-			return $this->filter_xss($val);
-			
-		return $val;
+		return $this->getParam($this->_get, $key, $default, $filter_xss);
 	}
 
 	/**
@@ -107,14 +122,21 @@ class Request
 	 */
 	public function post($key = null, $default = null, $filter_xss=true)
 	{
-		if ($key == null)
-			return $this->_post;
-		$val = $this->pixie->arr($this->_post, $key, $default);
-		
-		if ($filter_xss)
-			return $this->filter_xss($val);
-			
-		return $val;
+		return $this->getParam($this->_post, $key, $default, $filter_xss);
+	}
+
+	/**
+	 * Retrieves a URL parameter
+	 *
+	 * @param string $key    Parameter key
+	 * @param mixed $default Default value
+	 * @param bool  $filter_xss Whether to filter input for XSS protection
+	 * @return mixed Returns a value if a key is specified,
+	 *               or an array of POST parameters if it isn't.
+	 */
+	public function param($key = null, $default = null, $filter_xss=true)
+	{
+		return $this->getParam($this->_param, $key, $default, $filter_xss);
 	}
 
 	/**
@@ -151,27 +173,6 @@ class Request
 		if ($key == null)
 			return $this->_server;
 		return $this->pixie->arr($this->_server, $key, $default);
-	}
-
-	/**
-	 * Retrieves a URL parameter
-	 *
-	 * @param string $key    Parameter key
-	 * @param mixed $default Default value
-	 * @param bool  $filter_xss Whether to filter input for XSS protection
-	 * @return mixed Returns a value if a key is specified,
-	 *               or an array of POST parameters if it isn't.
-	 */
-	public function param($key = null, $default = null, $filter_xss=true)
-	{
-		if ($key == null)
-			return $this->_param;
-		$val = $this->pixie->arr($this->_param, $key, $default);
-		
-		if ($filter_xss)
-			return $this->filter_xss($val);
-			
-		return $val;
 	}
 
 	/**
