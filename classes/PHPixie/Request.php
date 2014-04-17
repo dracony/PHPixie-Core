@@ -209,4 +209,17 @@ class Request
 		return $url;
 	}
 	
+	/**
+	 * Check if the request is ajax
+	 *
+	 * @return bool True if it's ajax else False
+	 */
+	public function is_ajax()
+	{
+		if (strtolower($this->server('HTTP_X_REQUESTED_WITH')) === 'xmlhttprequest') {
+		   return true;
+		}
+		return false;
+	}
+	
 }
