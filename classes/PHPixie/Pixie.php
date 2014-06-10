@@ -251,6 +251,18 @@ namespace PHPixie;
 	}
 	
 	/**
+	 * Register assets directories
+	 * 
+	 * @return void
+	 */
+	protected function set_asset_dirs() {
+		$this->assets_dirs = array(
+			$this->root_dir.'assets/',
+			dirname(dirname(dirname(__FILE__))).'/assets/'
+		);
+	}
+	
+	/**
 	 * Bootstraps the project
 	 *
 	 * @param  string $root_dir Root directory of the application
@@ -266,8 +278,9 @@ namespace PHPixie;
 			$class_name = get_class($this);
 			$this->app_namespace = substr($class_name, 0, strpos($class_name, "\\")+1);
 		}
-		$this->assets_dirs[] = $this->root_dir.'assets/';
-		$this->assets_dirs[] = dirname(dirname(dirname(__FILE__))).'/assets/';
+
+		$this->set_asset_dirs();
+
 		$this->debug->init();
 		foreach($this->modules as $name=>$class) {
 			$this->$name = new $class($this);
