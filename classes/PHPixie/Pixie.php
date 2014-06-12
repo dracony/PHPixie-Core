@@ -214,7 +214,7 @@ namespace PHPixie;
 	public function http_request()
 	{
 		$uri = $_SERVER['REQUEST_URI'];
-		$uri = preg_replace("#^{$this->basepath}(?:index\.php/)?#i", '/', $uri);
+		$uri = preg_replace("#^{$this->basepath}(?:index\.php/?)#i", '/', $uri);
 		$url_parts = parse_url($uri);
 		$route_data = $this->router->match($url_parts['path'], $_SERVER['REQUEST_METHOD']);
 		return $this->request($route_data['route'], $_SERVER['REQUEST_METHOD'], $_POST, $_GET, $route_data['params'], $_SERVER, $_COOKIE);
