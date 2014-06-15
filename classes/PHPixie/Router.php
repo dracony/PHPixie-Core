@@ -22,7 +22,7 @@ class Router {
 	/**
 	 * Container for route's rule to process in callback function
 	 */
-	protected $tempRule;
+	protected $temp_rule;
 
 	/**
 	 * Constructs a router
@@ -95,7 +95,7 @@ class Router {
 			{
 				$pattern = is_array($rule) ? $rule[0] : $rule;
 				$pattern = str_replace(')', ')?', $pattern);
-				$this->tempRule = $rule;
+				$this->temp_rule = $rule;
 				$pattern = preg_replace_callback('/<.*?>/', array($this, 'rule'), $pattern);
 
 				preg_match('#^'.$pattern.'/?$#', $uri, $match);
@@ -135,8 +135,8 @@ class Router {
 	protected function rule($str) {
 		$str = $str[0];
 		$regexp = '[a-zA-Z0-9\-\._]+';
-		if(is_array($this->tempRule))
-			$regexp = $this->pixie->arr($this->tempRule[1], str_replace(array('<', '>'), '', $str), $regexp);
+		if(is_array($this->temp_rule))
+			$regexp = $this->pixie->arr($this->temp_rule[1], str_replace(array('<', '>'), '', $str), $regexp);
 		return '(?P'.$str.$regexp.')';
 	}
 
