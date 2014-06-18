@@ -74,6 +74,29 @@ namespace {
 			);
 		}
 		
+		public function test_base_Http_Request() {
+			$this->object->router->add(new \PHPixie\Route('/', 'default', '/<controller>', array('action' => 'test')));
+            
+			$_SERVER['REQUEST_URI'] = "/home/index";
+			$_POST['post'] = "test";
+			$_GET['get'] = "test";
+			$_SERVER['REQUEST_METHOD'] = "POST";
+			$_COOKIE['fairy'] = 'test';
+            $this->object->basepath='/home/';
+			$req = $this->object->http_request();
+			$this->assertEquals($req->get('get'), 'test');
+			$this->assertEquals($req->post('post'), 'test');
+			$this->assertEquals($req->server('REQUEST_METHOD'), 'POST');
+			$this->assertEquals($req->method, 'POST');
+			$this->assertEquals($req->param('controller'), 'index');
+			$this->assertEquals($req->param('action'), 'test');
+			$this->assertAttributeEquals(
+				array('fairy' => 'test'),
+				'_cookie',
+				$req
+			);
+		}
+        
 		public function testFind_file() {
 			$dir = $this->object->root_dir.'/assets';
 			if(!is_dir($dir))
