@@ -107,7 +107,7 @@ class View
 	 */
 	public function __get($key)
 	{
-		if (isset($this->_data[$key]))
+		if (array_key_exists($key, $this->_data))
 			return $this->_data[$key];
 		throw new \Exception("Value {$key} not set for view {$this->name}");
 	}
