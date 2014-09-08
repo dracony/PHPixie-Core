@@ -266,7 +266,7 @@ namespace PHPixie;
 	 * Bootstraps the project
 	 *
 	 * @param  string $root_dir Root directory of the application
-	 * @return void
+	 * @return $this
 	 */
 	public function bootstrap($root_dir) {
 		if (substr($root_dir, -1) != '/')
