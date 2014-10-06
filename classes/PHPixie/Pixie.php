@@ -269,8 +269,7 @@ namespace PHPixie;
 	 * @return $this
 	 */
 	public function bootstrap($root_dir) {
-		if (substr($root_dir, -1) != '/')
-			$root_dir.= '/';
+		$root_dir.= rtrim($root_dir, '/') . '/';
 			
 		$this->root_dir = $root_dir;
 		
