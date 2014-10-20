@@ -81,7 +81,7 @@ class Cookie {
 	 * @param bool $http_only If cookie should be available inly via HTTP protocol
 	 * @return void
 	 */
-	public function set($key, $val, $lifetime = null, $path = null, $domain = null, $secure = null, $http_only = null) {
+	public function set($key, $val, $lifetime = null, $path = '/', $domain = null, $secure = null, $http_only = null) {
 		$params = array();
 		foreach($this->params as $param)
 			if ($$param !== null)
