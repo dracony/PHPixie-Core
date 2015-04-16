@@ -17,7 +17,7 @@ class Router {
 	 * Associative array of route instances.
 	 * @var array
 	 */
-	protected $routes = array();
+	public $routes = array();
 
 	/**
 	 * Container for route's rule to process in callback function
