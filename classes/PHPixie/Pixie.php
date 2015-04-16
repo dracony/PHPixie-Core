@@ -281,12 +281,14 @@ namespace PHPixie;
 		$this->set_asset_dirs();
 
 		$this->debug->init();
+
+		foreach($this->config->get('routes') as $name => $rule) 
+			$this->router->add($this->route($name, $rule[0], $rule[1], $this->arr($rule, 2, null)));
+		
 		foreach($this->modules as $name=>$class) {
 			$this->$name = new $class($this);
 		}
-		foreach($this->config->get('routes') as $name => $rule) 
-			$this->router->add($this->route($name, $rule[0], $rule[1], $this->arr($rule, 2, null)));
-			
+
 		$this->after_bootstrap();
 		
 		return $this;
