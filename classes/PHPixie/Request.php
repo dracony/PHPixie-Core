@@ -184,7 +184,7 @@ class Request
 	public function execute()
 	{
 		$this->pixie->cookie->set_cookie_data($this->_cookie);
-		$class = $this->param('namespace',$this->pixie->app_namespace).'Controller\\'.ucfirst($this->param('controller'));
+		$class = $this->param('namespace',$this->pixie->app_namespace.'Controller').'\\'.ucfirst($this->param('controller'));
 		$controller = $this->pixie->controller($class);
 		$controller->request = $this;
 		$controller->run($this->param('action'));
